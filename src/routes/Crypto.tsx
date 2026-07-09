@@ -2,41 +2,23 @@ import {useQuery} from "@tanstack/react-query";
 import {apiService} from "@/services/api.ts";
 import {Card, CardAction, CardDescription, CardHeader, CardTitle} from "@/components/ui/card.tsx";
 import {ArrowDown, ArrowUp} from "lucide-react";
-import {motion} from "framer-motion";
+import {FadeIn} from "@/components/animation/motion/fadein/FadeIn.tsx";
 import type {ICryptoCoin} from "@/types/cryptoCoin.ts";
 
 
-export default function Protected() {
+export default function Crypto() {
     const { data } = useQuery<ICryptoCoin[]>({
         queryKey: ['cryptoCoin24'],
         queryFn: apiService.getCrypto,
     });
 
-    const container = {
-        hidden: {},
-        show: {
-            transition: {
-                staggerChildren: 0.5
-            }
-        }
-    };
-
-    const item = {
-        hidden: { opacity: 0, x: -50 },
-        show: { opacity: 1, x: 0 }
-    };
-
     return (
         <div>
-            <motion.div
-                key={data?.length ?? 'loading'}
-                variants={container}
-                initial="hidden"
-                animate="show"
+            <div
                 className="grid gap-5 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4"
             >
-                {data && data.map(coint => (
-                    <motion.div key={coint.id} variants={item}>
+                {data && data.map((coint, index) => (
+                    <FadeIn key={coint.id} index={index}>
                         <Card>
                             <CardHeader>
                                 <div className="flex items-center gap-2">
@@ -59,9 +41,9 @@ export default function Protected() {
                                 <CardAction className="uppercase">{coint.symbol}</CardAction>
                             </CardHeader>
                         </Card>
-                    </motion.div>
+                    </FadeIn>
                 ))}
-            </motion.div>
+            </div>
 
         </div>
     );

@@ -1,23 +1,12 @@
 import {useQuery} from "@tanstack/react-query";
-import {motion, type Variants} from "framer-motion";
+import {motion} from "framer-motion";
 import {ecoFlowApiService} from "@/services/ecoFlowApi.ts";
 import type {IEcoFlowData} from "@/types/ecoFlow.ts";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
 import {Activity, Battery, Power, ShieldCheck, Sun, Thermometer} from "lucide-react";
+import {FadeIn} from "@/components/animation/motion/fadein/FadeIn.tsx";
 
-const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 12 },
-    visible: (index: number) => ({
-        opacity: 1,
-        y: 0,
-        transition: {
-            delay: index * 0.08,
-            duration: 0.35,
-            ease: "easeOut" as const
-        }
-    })
-};
 
 export default function EcoFlow() {
     const REFETCH_MS = 2000;
@@ -48,11 +37,7 @@ export default function EcoFlow() {
     const formatA = (val?: number) => (val !== undefined ? `${(val / 1000).toFixed(2)} A` : "—");
 
     return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="p-6 container mx-auto space-y-6 font-sans min-h-[calc(100vh-173px)] bg-background text-foreground relative"
-        >
+        <div className="p-6 space-y-6 font-sans bg-background text-foreground relative">
             {/* HEADER */}
             <div className="flex flex-col md:flex-row md:items-center md:justify-between border-b pb-4 gap-4">
                 <div>
@@ -86,7 +71,7 @@ export default function EcoFlow() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
                 {/* 1. BATTERIE-STATUS */}
-                <motion.div variants={cardVariants} initial="hidden" animate="visible" custom={0}>
+                <FadeIn index={0}>
                     <Card className="shadow-sm border-muted/50 h-full">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">Batterie-Status</CardTitle>
@@ -119,10 +104,10 @@ export default function EcoFlow() {
                             </div>
                         </CardContent>
                     </Card>
-                </motion.div>
+                </FadeIn>
 
                 {/* 2. PHOTOVOLTAIK (PV) */}
-                <motion.div variants={cardVariants} initial="hidden" animate="visible" custom={1}>
+                <FadeIn index={1}>
                     <Card className="shadow-sm border-muted/50 h-full">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">Solarstrom (PV)</CardTitle>
@@ -141,10 +126,10 @@ export default function EcoFlow() {
                             </div>
                         </CardContent>
                     </Card>
-                </motion.div>
+                </FadeIn>
 
                 {/* 3. STROMNETZ & NETZANSCHLUSS */}
-                <motion.div variants={cardVariants} initial="hidden" animate="visible" custom={2}>
+                <FadeIn index={2}>
                     <Card className="shadow-sm border-muted/50 h-full">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">Hausanschluss & Netz</CardTitle>
@@ -171,10 +156,10 @@ export default function EcoFlow() {
                             </div>
                         </CardContent>
                     </Card>
-                </motion.div>
+                </FadeIn>
 
                 {/* 4. ENERGIEFLUSS & HAUS-LAST */}
-                <motion.div variants={cardVariants} initial="hidden" animate="visible" custom={3}>
+                <FadeIn index={3}>
                     <Card className="shadow-sm border-muted/50 h-full">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">Last- & Verteilung</CardTitle>
@@ -195,10 +180,10 @@ export default function EcoFlow() {
                             </div>
                         </CardContent>
                     </Card>
-                </motion.div>
+                </FadeIn>
 
                 {/* 5. SYSTEM-TEMPERATUREN & DIAGNOSE */}
-                <motion.div variants={cardVariants} initial="hidden" animate="visible" custom={4}>
+                <FadeIn index={4}>
                     <Card className="shadow-sm border-muted/50 h-full">
                         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                             <CardTitle className="text-sm font-medium">Temperaturen & Sicherheit</CardTitle>
@@ -226,8 +211,8 @@ export default function EcoFlow() {
                             </div>
                         </CardContent>
                     </Card>
-                </motion.div>
+                </FadeIn>
             </div>
-        </motion.div>
+        </div>
     );
 }
