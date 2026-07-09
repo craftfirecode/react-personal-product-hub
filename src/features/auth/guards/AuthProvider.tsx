@@ -37,6 +37,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           }
         }
       } catch (err) {
+          console.error("Fehler bei der Auth-Initialisierung:", err);
         if (isMounted) {
           setSession(null);
           setUser(null);
