@@ -24,19 +24,18 @@ function NavLink({ to, pathname, children }: NavLinkProps) {
 
     return (
         <NavigationMenuItem>
-            <Link to={to} className="relative">
-                <NavigationMenuLink
-                    className={cn(
-                        navigationMenuTriggerStyle(),
-                        "transition-colors duration-200",
-                        isActive
-                            ? "bg-accent text-accent-foreground font-semibold" // Aktiver Zustand
-                            : "text-muted-foreground hover:text-foreground"
-                    )}
-                >
-                    {children}
-                </NavigationMenuLink>
-            </Link>
+            <NavigationMenuLink
+                render={<Link to={to} />}
+                className={cn(
+                    navigationMenuTriggerStyle(),
+                    "transition-colors duration-200",
+                    isActive
+                        ? "bg-accent text-accent-foreground font-semibold" // Aktiver Zustand
+                        : "text-muted-foreground hover:text-foreground"
+                )}
+            >
+                {children}
+            </NavigationMenuLink>
         </NavigationMenuItem>
     );
 }
@@ -73,9 +72,9 @@ export default function RootLayout() {
                                 <LogoutButton />
                             </div>
                         ) : (
-                            <Link to="/login">
-                                <Button size="sm">Login</Button>
-                            </Link>
+                            <Button render={<Link to="/login" />} size="sm" nativeButton={false}>
+                                Login
+                            </Button>
                         )}
                     </div>
                 </nav>
