@@ -1,6 +1,6 @@
 import { supabase } from "../lib/supabase";
 
-const BASE_URL = 'http://localhost:3001/api';
+const BASE_URL = 'https://ecoflow.craftfire.de/api';
 
 export const ecoFlowApiService = {
     async getEcoFlowData () {
