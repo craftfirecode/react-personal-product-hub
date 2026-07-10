@@ -46,7 +46,7 @@ export default function Login() {
     }
 
     return (
-        <LoginForm title="Login" className="w-m-[450px] mx-auto mt-15">
+        <LoginForm title="Login" className="max-w-[450px] w-full mx-auto mt-15">
             <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4">
                 <div>
                     <Input
