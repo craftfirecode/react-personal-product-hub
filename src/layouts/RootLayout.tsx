@@ -56,7 +56,7 @@ export default function RootLayout() {
                             {/*<NavLink to="/sandbox" pathname={location.pathname}>Sandbox</NavLink>*/}
 
                             {session && (
-                                <NavLink to="/protected" pathname={location.pathname}>Protected</NavLink>
+                                <NavLink to="/app" pathname={location.pathname}>Protected</NavLink>
                             )}
                         </NavigationMenuList>
                     </NavigationMenu>
