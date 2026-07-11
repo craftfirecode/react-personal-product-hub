@@ -55,12 +55,22 @@ export function AuthProvider({
         supabase.auth.getSession().then(({ data, error }) => {
           if (error) {
             console.error("Fehler beim Re-Check der Session:", error.message);
+            // API tot / Fehler beim Abrufen -> Seite neu laden
+            window.location.reload();
+            return;
           }
+
+          // Optional: Wenn keine Session mehr vorhanden ist, obwohl vorher
+          // eine da war (z.B. abgelaufen und Supabase konnte nicht refreshen)
+          if (!data.session) {
+            window.location.reload();
+            return;
+          }
+
           setSession(data.session);
         });
       }
     }
-
     document.addEventListener("visibilitychange", handleVisibilityChange);
 
     return () => {
