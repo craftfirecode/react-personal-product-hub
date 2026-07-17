@@ -9,6 +9,7 @@ import EcoFlow from "@/routes/EcoFlow.tsx";
 import Dashboard from "@/routes/Dashboard.tsx";
 import Home from "@/routes/Home.tsx";
 import ErrorPage from "@/routes/ErrorPage.tsx";
+import Todos from "@/routes/Todos.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -38,21 +39,24 @@ export const router = createBrowserRouter([
                 element: <ProtectedLayout/>,
                 children: [
                     {
-                        // Falls jemand nur "/app" aufruft, wird er direkt zum Dashboard weitergeleitet
                         path: "",
                         element: <Navigate to="dashboard" replace />,
                     },
                     {
-                        path: "crypto", // <--- Erreichbar unter "/app/crypto"
+                        path: "crypto",
                         element: <Crypto/>,
                     },
                     {
-                        path: "ecoflow", // <--- Erreichbar unter "/app/ecoflow"
+                        path: "ecoflow",
                         element: <EcoFlow/>,
                     },
                     {
-                        path: "dashboard", // <--- Erreichbar unter "/app/dashboard"
+                        path: "dashboard",
                         element: <Dashboard />,
+                    },
+                    {
+                        path: "todos",
+                        element: <Todos/>,
                     },
                 ],
             },
