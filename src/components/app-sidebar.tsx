@@ -52,7 +52,7 @@ const data = {
       ],
     },
     {
-      title: "Tools",
+      title: "Supabase POC",
       url: "#",
       icon: (
           <TerminalSquareIcon
@@ -62,6 +62,10 @@ const data = {
         {
           title: "Todos",
           url: "/app/todos",
+        },
+        {
+          title: "Images",
+          url: "/app/img",
         },
       ],
     },

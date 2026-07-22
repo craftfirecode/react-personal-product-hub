@@ -10,6 +10,7 @@ import Dashboard from "@/routes/Dashboard.tsx";
 import Home from "@/routes/Home.tsx";
 import ErrorPage from "@/routes/ErrorPage.tsx";
 import Todos from "@/routes/Todos.tsx";
+import ImageManager from "@/routes/ImageManager.tsx";
 
 export const router = createBrowserRouter([
     {
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
                     {
                         path: "todos",
                         element: <Todos/>,
+                    },
+                    {
+                        path: "img",
+                        element: <ImageManager/>,
                     },
                 ],
             },
